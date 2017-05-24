@@ -1,0 +1,14 @@
+#!/bin/bash
+# Prevents pushing to master or development
+
+BRANCH=`git rev-parse --abbrev-ref HEAD`
+PUSH_COMMAND=`ps -ocommand= -p $PPID`
+PROTECTED_BRANCHES="^(master|development)"
+
+if [[ "$BRANCH" =~ $PROTECTED_BRANCHES ]]; then
+  echo "Prevented push to protected branch \"$BRANCH\" by pre-push hook.  You should submit a pull request."
+  echo "If you want to skip this check, invoke again with --no-verify
+  exit 1
+fi
+
+exit 0
