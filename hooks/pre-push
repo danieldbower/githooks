@@ -1,5 +1,6 @@
 #!/bin/bash
 # Prevents pushing to master or development branches
+# ideas and some code from comments to https://gist.github.com/pixelhandler/5718585
 
 BRANCH=`git rev-parse --abbrev-ref HEAD`
 PUSH_COMMAND=`ps -ocommand= -p $PPID`
